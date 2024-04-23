@@ -23,8 +23,14 @@ For Windows users, the process involves a few additional steps, ensuring a smoot
 Now you can easily use Mistral in the command line (CMD) using the following command:
 
 ```
-docker exec -it ollama ollama run mistral
+(1) ollama image 다운 받은 후 Docker에서 run :
+(2) ollama 내부 mistral run : docker exec -it ollama ollama run mistral
+
 ```
+
+docker run -d --name ollama -p 11434:11434 ollama/ollama
+
+
 ## Usage
 #### NOTE: First install Ollama in docker and run mistral as stated above
 
