@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: langchain-mistral
+  namespace: langchain-gpu
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: langchain-mistral
+  template:
+    metadata:
+      labels:
+        app: langchain-mistral
+    spec:
+      containers:
+      - name: langchain-mistral-container
+        image: calabdevregistry.azurecr.io/langchain_mistral:v1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 11434
+        resources:
+          limits:
+            nvidia.com/gpu: "1"
+      imagePullSecrets:
+      - name: acr-gpu-secret
+      nodeSelector:
+        nvidia.com/gpu: "true"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: langchain-mistral-service
+  namespace: langchain-gpu
+spec:
+  ports:
+  - port: 11434
+    protocol: TCP
+    targetPort: 11434
+  selector:
+    app: langchain-mistral
+  type: ClusterIP
+status:
+  loadBalancer: {}

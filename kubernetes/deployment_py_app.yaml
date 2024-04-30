@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: langchain-mistral-app
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: langchain-mistral-app
+  template:
+    metadata:
+      labels:
+        app: langchain-mistral-app
+    spec:
+      containers:
+      - name: langchain-mistral-app-container
+        image: calabdevregistry.azurecr.io/langchain_mistral_app:v1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8502
+      imagePullSecrets:
+      - name: acr-secret 
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: langchain-mistral-app-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: langchain-mistral-app
+  ports:
+  - protocol: TCP
+    port: 8502
+    targetPort: 8502

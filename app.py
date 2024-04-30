@@ -37,23 +37,43 @@ if 'memory' not in st.session_state:
     st.session_state.memory = ConversationBufferMemory(
         memory_key="history",
         return_messages=True,
+<<<<<<< HEAD
         input_key="question"
     )
 
 if 'vectorstore' not in st.session_state:
     st.session_state.vectorstore = None
+=======
+        input_key="question")
+    
+                                                       
+if 'vectorstore' not in st.session_state:
+    st.session_state.vectorstore = Chroma(persist_directory='jj',
+                                          embedding_function=OllamaEmbeddings(base_url='http://langchain-mistral-service.langchain-gpu:11434',
+                                                                              model="mistral")
+                                          )
+>>>>>>> ae7af5d (2024.04.30 - 기획팀 리뷰 : vector 임베딩 수정 필요)
 
 if 'llm' not in st.session_state:
-    st.session_state.llm = Ollama(base_url="http://localhost:11434",
+    st.session_state.llm = Ollama(base_url="http://langchain-mistral-service.langchain-gpu:11434",
                                   model="mistral",
+<<<<<<< HEAD
                                   verbose=True
                                  )
+=======
+                                  verbose=True,
+                                  callback_manager=CallbackManager([]))
+>>>>>>> ae7af5d (2024.04.30 - 기획팀 리뷰 : vector 임베딩 수정 필요)
 
 if 'chat_history' not in st.session_state:
     st.session_state.chat_history = []
 
 st.title("PDF Chatbot")
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> ae7af5d (2024.04.30 - 기획팀 리뷰 : vector 임베딩 수정 필요)
 uploaded_file = st.file_uploader("Upload your PDF", type='pdf')
 
 for message in st.session_state.chat_history:
@@ -85,7 +105,10 @@ if uploaded_file is not None:
 
     st.session_state.retriever = st.session_state.vectorstore.as_retriever()
 
+<<<<<<< HEAD
     handlers = [StreamingStdOutCallbackHandler()]
+=======
+>>>>>>> ae7af5d (2024.04.30 - 기획팀 리뷰 : vector 임베딩 수정 필요)
     if 'qa_chain' not in st.session_state:
         st.session_state.qa_chain = RetrievalQA.from_chain_type(
             llm=st.session_state.llm,
@@ -113,6 +136,10 @@ if uploaded_file is not None:
             for chunk in response['result'].split():
                 full_response += chunk + " "
                 time.sleep(0.05)
+<<<<<<< HEAD
+=======
+
+>>>>>>> ae7af5d (2024.04.30 - 기획팀 리뷰 : vector 임베딩 수정 필요)
                 message_placeholder.markdown(full_response + "▌")
             message_placeholder.markdown(full_response)
 

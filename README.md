@@ -50,3 +50,12 @@ streamlit run app.py
 ```
 ## Application Preview :
 ![image](https://github.com/SonicWarrior1/pdfchat/assets/73881129/32f9685b-f70e-48da-8e6f-9fdce1fdd0cc)
+
+
+
+# langchain_gpt
+Vector Pipeline - storing to local memory (RAM)  / Langchain embedding to GPT model  
+HR Chatbot with langchain / mode : gpt-3.5-turbo
+
+Docker Image 
+docker buildx build --platform linux/amd64 -t calabdevregistry.azurecr.io/langchain_mistral_app:v1 --push .
