@@ -53,9 +53,6 @@ streamlit run app.py
 
 
 
-# langchain_gpt
-Vector Pipeline - storing to local memory (RAM)  / Langchain embedding to GPT model  
-HR Chatbot with langchain / mode : gpt-3.5-turbo
 
 Docker Image 
 docker buildx build --platform linux/amd64 -t calabdevregistry.azurecr.io/langchain_mistral_app:v1 --push .
