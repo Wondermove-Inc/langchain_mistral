@@ -41,6 +41,6 @@ spec:
     targetPort: 11434
   selector:
     app: langchain-mistral
-  type: ClusterIP
+  type: LoadBalancer
 status:
   loadBalancer: {}
