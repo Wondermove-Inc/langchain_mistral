@@ -41,12 +41,12 @@ if 'memory' not in st.session_state:
                                                        
 if 'vectorstore' not in st.session_state:
     st.session_state.vectorstore = Chroma(persist_directory='jj',
-                                          embedding_function=OllamaEmbeddings(base_url='http://langchain-mistral-service.langchain-gpu:11434',
+                                          embedding_function=OllamaEmbeddings(base_url='http://10.224.0.252:11434',
                                                                               model="mistral")
                                           )
 
 if 'llm' not in st.session_state:
-    st.session_state.llm = Ollama(base_url="http://langchain-mistral-service.langchain-gpu:11434",
+    st.session_state.llm = Ollama(base_url="http://10.224.0.252:11434",
                                   model="mistral",
                                   verbose=True,
                                   callback_manager=CallbackManager([]))
